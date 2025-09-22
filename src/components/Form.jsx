@@ -39,7 +39,7 @@ const Form = ({ selectedOffer }) => {
 
     try {
       await fetch(
-        "https://script.google.com/macros/s/AKfycbxRcm64Oo8gHb1-CElu4uDp-sGyydA5llUVe0rxCM2wzQcTMCRKp0teSo-dq-4hZvFkYg/exec",
+        "https://script.google.com/macros/s/AKfycbyqBB9FB7EGqPXgiYKgEla64Uz_QDuFQL8gBw9Yd2jr66DKL3C9C6vYJDPt_fiEzwkS/exec",
         {
           method: "POST",
           headers: {
