@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FiUser,
   FiPhone,
@@ -9,6 +9,17 @@ import {
 
 const Form = ({ selectedOffer }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Lock body scroll when loading overlay is visible
+  useEffect(() => {
+    if (loading) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [loading]);
 
   const paymentMethods = [
     "D17",
@@ -23,6 +34,7 @@ const Form = ({ selectedOffer }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new URLSearchParams({
       prenom: e.target.prenom.value,
@@ -49,9 +61,11 @@ const Form = ({ selectedOffer }) => {
         }
       );
       setSubmitted(true);
+      setLoading(false);
     } catch (error) {
       console.error("Erreur lors de l'envoi du formulaire :", error);
       alert("Erreur lors de l'envoi. Veuillez réessayer.");
+      setLoading(false);
     }
   };
 
@@ -80,6 +94,18 @@ const Form = ({ selectedOffer }) => {
       onSubmit={handleSubmit}
       className="p-10 max-w-4xl mx-auto bg-gray-800 rounded-box shadow-2xl border border-gray-700"
     >
+      {loading && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm"
+          aria-busy="true"
+          aria-live="polite"
+        >
+          <div className="flex flex-col items-center gap-4">
+            <div className="h-16 w-16 rounded-full border-4 border-cyan-500 border-t-transparent animate-spin"></div>
+            <p className="text-white text-lg">Veuillez patienter...</p>
+          </div>
+        </div>
+      )}
       <h2 className="text-3xl font-bold mb-8 text-center text-cyan-400">
         Finalisez votre commande
       </h2>
@@ -203,9 +229,10 @@ const Form = ({ selectedOffer }) => {
       <div className="flex justify-center mt-10">
         <button
           type="submit"
-          className="btn bg-cyan-600 hover:bg-cyan-500 border-none text-white shadow-lg hover:shadow-cyan-500/30 px-10 py-3 text-lg transition-all duration-300"
+          disabled={loading}
+          className="btn bg-cyan-600 hover:bg-cyan-500 border-none text-white shadow-lg hover:shadow-cyan-500/30 px-10 py-3 text-lg transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          Confirmer la commande
+          {loading ? "Envoi en cours..." : "Confirmer la commande"}
         </button>
       </div>
     </form>

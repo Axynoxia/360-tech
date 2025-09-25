@@ -20,6 +20,11 @@ const categoriesData = [
     subcategories: ["Compte individuel – 1 mois", "Compte partagé – 1 mois"],
   },
   {
+    name: "Claude 3.5",
+    image: `${BASE}claude.png`,
+    subcategories: ["Compte individuel – 1 mois", "Compte partagé – 1 mois"],
+  },
+  {
     name: "Canva Pro",
     image: `${BASE}canva.png`,
     subcategories: ["Canva – Abonnement 1 an", "Abonnement 3 ans"],
@@ -102,6 +107,25 @@ const allPackages = {
       "Utilisation simultanée possible, sans interruption",
     ],
   },
+  // Claude 3.5 packages (same as ChatGPT but with updated feature text)
+  "Claude 3.5 – Compte individuel – 1 mois": {
+    price: "90 DT",
+    features: [
+      "Accès : illimité, rapide, stable",
+      "Compte avec votre mail personnel",
+      "Accès complet aux modèles avancés Claude 3.5 (Opus, Sonnet, Haiku)",
+      "Idéal pour : usage sérieux ou professionnel",
+    ],
+  },
+  "Claude 3.5 – Compte partagé – 1 mois": {
+    price: "30 DT",
+    features: [
+      "Accès : illimité, rapide, stable",
+      "Accès complet aux modèles avancés Claude 3.5 (Opus, Sonnet, Haiku)",
+      "Compte partagé avec 3 personnes",
+      "Utilisation simultanée possible, sans interruption",
+    ],
+  },
   "Canva – Abonnement 1 an": {
     price: "30 DT",
     features: [
@@ -160,6 +184,14 @@ const CategoriesAndPackages = ({ setSelectedOffer }) => {
     const category = categoriesData.find((c) => c.name === catName);
     setSelectedCategory(catName);
     setSelectedService(category.subcategories[0]);
+  };
+
+  // Helper to resolve the correct package key based on selected category/service
+  const getPackageKey = (category, service) => {
+    if (category === "Claude 3.5") {
+      return `Claude 3.5 – ${service}`;
+    }
+    return service;
   };
 
   return (
@@ -239,10 +271,10 @@ const CategoriesAndPackages = ({ setSelectedOffer }) => {
                   <FiAward className="ml-2 text-cyan-400" size={24} />
                 </h3>
                 <div className="text-5xl font-extrabold mb-4 text-cyan-400">
-                  {allPackages[selectedService]?.price}
+                  {allPackages[getPackageKey(selectedCategory, selectedService)]?.price}
                 </div>
                 <div className="space-y-4 text-lg text-white">
-                  {allPackages[selectedService]?.features.map(
+                  {allPackages[getPackageKey(selectedCategory, selectedService)]?.features.map(
                     (feature, idx) => (
                       <div
                         key={idx}
@@ -260,11 +292,12 @@ const CategoriesAndPackages = ({ setSelectedOffer }) => {
                 <button
                   className="mt-6 btn bg-cyan-600 hover:bg-cyan-500 border-none text-white shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
                   onClick={() => {
+                    const key = getPackageKey(selectedCategory, selectedService);
                     setSelectedOffer({
                       name: selectedService,
                       category: selectedCategory,
-                      price: allPackages[selectedService]?.price,
-                      features: allPackages[selectedService]?.features,
+                      price: allPackages[key]?.price,
+                      features: allPackages[key]?.features,
                     });
                     document
                       .getElementById("order-form")
