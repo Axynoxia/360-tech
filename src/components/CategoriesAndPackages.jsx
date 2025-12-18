@@ -15,9 +15,9 @@ const categoriesData = [
     ],
   },
   {
-    name: "ChatGPT 4.0",
+    name: "ChatGPT 5.2",
     image: `${BASE}chatgpt.png`,
-    subcategories: ["Compte individuel – 1 mois", "Compte partagé – 1 mois"],
+    subcategories: ["Compte individuel – 1 mois"],
   },
   {
     name: "Claude 3.5",
@@ -90,11 +90,11 @@ const allPackages = {
     ],
   },
   "Compte individuel – 1 mois": {
-    price: "90 DT",
+    price: "25 DT",
     features: [
       "Accès : illimité, rapide, stable",
       "Compte avec votre mail personnel",
-      "Accès complet à GPT‑4, DALL-E, Humanize AI",
+      "Accès complet à GPT‑5.2, DALL-E, Humanize AI",
       "Idéal pour : usage sérieux ou professionnel",
     ],
   },
@@ -127,7 +127,7 @@ const allPackages = {
     ],
   },
   "Canva – Abonnement 1 an": {
-    price: "30 DT",
+    price: "15 DT",
     features: [
       "Accès complet à toutes les fonctionnalités",
       "1 To de stockage",
@@ -137,7 +137,7 @@ const allPackages = {
     ],
   },
   "Abonnement 3 ans": {
-    price: "50 DT",
+    price: "30 DT",
     features: [
       "1 To de stockage, suppression d’arrière‑plan",
       "Magic Resize, bibliothèque premium (100 M+ éléments)",
@@ -145,7 +145,7 @@ const allPackages = {
     ],
   },
   "Abonnement 1 mois": {
-    price: "55 DT",
+    price: "40 DT",
     features: [
       "Accès mobile, bureau et web",
       "Effets premium, transitions, IA",
@@ -153,11 +153,11 @@ const allPackages = {
     ],
   },
   "Capcut – Abonnement 1 an": {
-    price: "280 DT",
+    price: "250 DT",
     features: [
       "Accès sur mobile, bureau et web",
       "Compte avec votre mail personnel",
-      "Effets premium, transitions, AI (suppression d’arrière‑plan, auto‑caption…)",
+      "Effets premium, transitions, AI (suppression d'arrière‑plan, auto‑caption…)",
       "Export vidéo 4K, stockage cloud, pas de watermark",
     ],
   },
@@ -190,6 +190,9 @@ const CategoriesAndPackages = ({ setSelectedOffer }) => {
   const getPackageKey = (category, service) => {
     if (category === "Claude 3.5") {
       return `Claude 3.5 – ${service}`;
+    }
+    if (category === "ChatGPT 5.2") {
+      return service;
     }
     return service;
   };

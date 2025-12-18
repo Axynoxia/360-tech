@@ -5,6 +5,7 @@ import {
   FiMail,
   FiCheckCircle,
   FiCreditCard,
+  FiCalendar,
 } from "react-icons/fi";
 
 const Form = ({ selectedOffer }) => {
@@ -31,6 +32,7 @@ const Form = ({ selectedOffer }) => {
     "Flouci",
   ];
   const [paymentMethod, setPaymentMethod] = useState(paymentMethods[0]);
+  const [subscriptionDuration, setSubscriptionDuration] = useState("1");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +49,7 @@ const Form = ({ selectedOffer }) => {
       prix: selectedOffer?.price || "",
       details: (selectedOffer?.features || []).join(", "),
       paiement: paymentMethod,
+      duree: subscriptionDuration,
     });
 
     try {
@@ -202,6 +205,27 @@ const Form = ({ selectedOffer }) => {
             className="input input-bordered w-full text-lg bg-gray-700 border-gray-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500"
             required
           />
+        </div>
+
+        <div className="form-control col-span-1 md:col-span-2">
+          <label className="label">
+            <span className="label-text text-lg flex items-center text-gray-300">
+              <FiCalendar className="mr-2 text-cyan-400" /> Durée de
+              l'abonnement
+            </span>
+          </label>
+          <select
+            value={subscriptionDuration}
+            onChange={(e) => setSubscriptionDuration(e.target.value)}
+            className="select select-bordered w-full text-lg bg-gray-700 border-gray-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500"
+            required
+          >
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+              <option key={month} value={month}>
+                {month} {month === 1 ? "mois" : "mois"}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-control col-span-1 md:col-span-2">
