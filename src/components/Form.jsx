@@ -32,7 +32,7 @@ const Form = ({ selectedOffer }) => {
     "Flouci",
   ];
   const [paymentMethod, setPaymentMethod] = useState(paymentMethods[0]);
-  const [subscriptionDuration, setSubscriptionDuration] = useState("1");
+  const [subscriptionDuration, setSubscriptionDuration] = useState("1 mois");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ const Form = ({ selectedOffer }) => {
 
     try {
       await fetch(
-        "https://script.google.com/macros/s/AKfycbyv289ibLrJ6omkOPLcV8F8HS29BzD9XxUgb5cnixHHuhxNPCyd2ooUD7mh3Qws8ODc/exec",
+        "https://script.google.com/macros/s/AKfycbzgG0DXdQDgqApz7cpObpSt4DKjfHSL8kwooFqUISgGSqrrdN3E1MYBB1uYUCwPQWLD/exec",
         {
           method: "POST",
           headers: {
@@ -221,10 +221,11 @@ const Form = ({ selectedOffer }) => {
             required
           >
             {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-              <option key={month} value={month}>
+              <option key={month} value={`${month} mois`}>
                 {month} {month === 1 ? "mois" : "mois"}
               </option>
             ))}
+            <option value="3 ans">3 ans</option>
           </select>
         </div>
 

@@ -5,7 +5,7 @@
  * SETUP INSTRUCTIONS:
  * 1. Create a new Google Sheet
  * 2. In the first row, add these column headers:
- *    - Prénom | Nom | Email | Téléphone | WhatsApp | Offre | Catégorie | Prix | Détails | Paiement | Durée | Date
+ *    - Prénom | Nom | E-mail | Tel | WhatsApp | Durée | Paiement
  * 3. Open Extensions > Apps Script
  * 4. Delete the default code and paste this script
  * 5. Save the project
@@ -27,23 +27,15 @@ function doPost(e) {
     // OR use a specific sheet by name:
     // const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Form Responses');
     
-    // Get current timestamp
-    const timestamp = new Date();
-    
     // Prepare the row data in the same order as your headers
     const rowData = [
       data.prenom || '',           // Prénom
       data.nom || '',              // Nom
-      data.email || '',            // Email
-      data.telephone || '',        // Téléphone
+      data.email || '',            // E-mail
+      data.telephone || '',        // Tel
       data.whatsapp || '',         // WhatsApp
-      data.offre || '',            // Offre
-      data.categorie || '',        // Catégorie
-      data.prix || '',             // Prix
-      data.details || '',          // Détails
-      data.paiement || '',         // Paiement
       data.duree || '',            // Durée
-      timestamp                    // Date
+      data.paiement || ''          // Paiement
     ];
     
     // Append the data to the sheet

@@ -15,12 +15,12 @@ const categoriesData = [
     ],
   },
   {
-    name: "ChatGPT 5.2",
+    name: "ChatGPT",
     image: `${BASE}chatgpt.png`,
     subcategories: ["Compte individuel – 1 mois"],
   },
   {
-    name: "Claude 3.5",
+    name: "Claude",
     image: `${BASE}claude.png`,
     subcategories: ["Compte individuel – 1 mois", "Compte partagé – 1 mois"],
   },
@@ -49,7 +49,7 @@ const categoriesData = [
 
 const allPackages = {
   "1 Profil dédié – 1 mois": {
-    price: "20 DT",
+    price: "15 DT",
     features: [
       "Code PIN : Profil verrouillé (usage exclusif)",
       "Qualité vidéo : Ultra HD 4K + HDR",
@@ -94,7 +94,7 @@ const allPackages = {
     features: [
       "Accès : illimité, rapide, stable",
       "Compte avec votre mail personnel",
-      "Accès complet à GPT‑5.2, DALL-E, Humanize AI",
+      "Accès complet à GPT, DALL-E, Humanize AI",
       "Idéal pour : usage sérieux ou professionnel",
     ],
   },
@@ -102,26 +102,26 @@ const allPackages = {
     price: "30 DT",
     features: [
       "Accès : illimité, rapide, stable",
-      "Accès complet à GPT‑4, DALL-E, Humanize AI",
+      "Accès complet à GPT, DALL-E, Humanize AI",
       "Compte partagé avec 3 personnes",
       "Utilisation simultanée possible, sans interruption",
     ],
   },
-  // Claude 3.5 packages (same as ChatGPT but with updated feature text)
-  "Claude 3.5 – Compte individuel – 1 mois": {
+  // Claude packages (same as ChatGPT but with updated feature text)
+  "Claude – Compte individuel – 1 mois": {
     price: "90 DT",
     features: [
       "Accès : illimité, rapide, stable",
       "Compte avec votre mail personnel",
-      "Accès complet aux modèles avancés Claude 3.5 (Opus, Sonnet, Haiku)",
+      "Accès complet aux modèles avancés Claude",
       "Idéal pour : usage sérieux ou professionnel",
     ],
   },
-  "Claude 3.5 – Compte partagé – 1 mois": {
+  "Claude – Compte partagé – 1 mois": {
     price: "30 DT",
     features: [
       "Accès : illimité, rapide, stable",
-      "Accès complet aux modèles avancés Claude 3.5 (Opus, Sonnet, Haiku)",
+      "Accès complet aux modèles avancés Claude",
       "Compte partagé avec 3 personnes",
       "Utilisation simultanée possible, sans interruption",
     ],
@@ -188,10 +188,10 @@ const CategoriesAndPackages = ({ setSelectedOffer }) => {
 
   // Helper to resolve the correct package key based on selected category/service
   const getPackageKey = (category, service) => {
-    if (category === "Claude 3.5") {
-      return `Claude 3.5 – ${service}`;
+    if (category === "Claude") {
+      return `Claude – ${service}`;
     }
-    if (category === "ChatGPT 5.2") {
+    if (category === "ChatGPT") {
       return service;
     }
     return service;
