@@ -38,6 +38,11 @@ const Form = ({ selectedOffer }) => {
     e.preventDefault();
     setLoading(true);
 
+    // Format abonnement details
+    const abonnementDetails = selectedOffer
+      ? `Catégorie: ${selectedOffer.category || ""} | Offre: ${selectedOffer.name || ""} | Prix: ${selectedOffer.price || ""} | Détails: ${(selectedOffer.features || []).join(", ")}`
+      : "";
+
     const formData = new URLSearchParams({
       prenom: e.target.prenom.value,
       nom: e.target.nom.value,
@@ -50,11 +55,12 @@ const Form = ({ selectedOffer }) => {
       details: (selectedOffer?.features || []).join(", "),
       paiement: paymentMethod,
       duree: subscriptionDuration,
+      abonnement: abonnementDetails,
     });
 
     try {
       await fetch(
-        "https://script.google.com/macros/s/AKfycbzgG0DXdQDgqApz7cpObpSt4DKjfHSL8kwooFqUISgGSqrrdN3E1MYBB1uYUCwPQWLD/exec",
+        "https://script.google.com/macros/s/AKfycbzh9XPvx14poA0ZSWavf0dQkv6ay6IJecyT0B9aKSfsJlbLg77stSTdYCqFpNPTXosp/exec",
         {
           method: "POST",
           headers: {

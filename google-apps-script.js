@@ -5,7 +5,7 @@
  * SETUP INSTRUCTIONS:
  * 1. Create a new Google Sheet
  * 2. In the first row, add these column headers:
- *    - Prénom | Nom | E-mail | Tel | WhatsApp | Durée | Paiement
+ *    - Prénom | Nom | E-mail | Tel | WhatsApp | Durée | Paiement | Abonnement
  * 3. Open Extensions > Apps Script
  * 4. Delete the default code and paste this script
  * 5. Save the project
@@ -35,7 +35,8 @@ function doPost(e) {
       data.telephone || '',        // Tel
       data.whatsapp || '',         // WhatsApp
       data.duree || '',            // Durée
-      data.paiement || ''          // Paiement
+      data.paiement || '',         // Paiement
+      data.abonnement || ''        // Abonnement
     ];
     
     // Append the data to the sheet
@@ -77,7 +78,8 @@ function testDoPost() {
       prix: '55 DT',
       details: 'Feature 1, Feature 2',
       paiement: 'D17',
-      duree: '1'
+      duree: '1 mois',
+      abonnement: 'Catégorie: Netflix | Offre: Premium – 1 mois | Prix: 55 DT | Détails: Feature 1, Feature 2'
     }
   };
   
