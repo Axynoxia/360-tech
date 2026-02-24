@@ -17,7 +17,12 @@ const categoriesData = [
   {
     name: "ChatGPT",
     image: `${BASE}chatgpt.png`,
-    subcategories: ["Compte individuel – 1 mois"],
+    subcategories: ["Compte pro – 1 Mois"],
+  },
+  {
+    name: "Perplexity",
+    image: `${BASE}perplexity.png`,
+    subcategories: ["Perplexity Pro – 1 mois"],
   },
   {
     name: "Claude",
@@ -89,13 +94,20 @@ const allPackages = {
       "Idéal pour : familles nombreuses ou partage entre amis",
     ],
   },
-  "Compte individuel – 1 mois": {
+  "Compte pro – 1 Mois": {
     price: "25 DT",
     features: [
       "Accès : illimité, rapide, stable",
-      "Compte avec votre mail personnel",
       "Accès complet à GPT, DALL-E, Humanize AI",
       "Idéal pour : usage sérieux ou professionnel",
+    ],
+  },
+  "Perplexity Pro – 1 mois": {
+    price: "25 DT",
+    features: [
+      "Accès : illimité, rapide, stable",
+      "Accès complet : Accès aux modèles avancés",
+      "Idéal pour : un usage sérieux ou professionnel, avec des fonctionnalités avancées pour optimiser vos projets et analyses.",
     ],
   },
   "Compte partagé – 1 mois": {

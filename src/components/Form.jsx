@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import {
   FiUser,
   FiPhone,
-  FiMail,
   FiCheckCircle,
   FiCreditCard,
   FiCalendar,
@@ -46,8 +45,8 @@ const Form = ({ selectedOffer }) => {
     const formData = new URLSearchParams({
       prenom: e.target.prenom.value,
       nom: e.target.nom.value,
-      email: e.target.email.value,
-      telephone: e.target.telephone.value,
+      email: "",
+      telephone: "",
       whatsapp: e.target.whatsapp.value,
       offre: selectedOffer?.name || "",
       categorie: selectedOffer?.category || "",
@@ -162,37 +161,6 @@ const Form = ({ selectedOffer }) => {
             name="nom"
             type="text"
             placeholder="Nom"
-            className="input input-bordered w-full text-lg bg-gray-700 border-gray-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500"
-            required
-          />
-        </div>
-
-        <div className="form-control col-span-1 md:col-span-2">
-          <label className="label">
-            <span className="label-text text-lg flex items-center text-gray-300">
-              <FiMail className="mr-2 text-cyan-400" /> Adresse e-mail de votre
-              compte
-            </span>
-          </label>
-          <input
-            name="email"
-            type="email"
-            placeholder="exemple@email.com"
-            className="input input-bordered w-full text-lg bg-gray-700 border-gray-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500"
-            required
-          />
-        </div>
-
-        <div className="form-control col-span-1 md:col-span-2">
-          <label className="label">
-            <span className="label-text text-lg flex items-center text-gray-300">
-              <FiPhone className="mr-2 text-cyan-400" /> Numéro de téléphone
-            </span>
-          </label>
-          <input
-            name="telephone"
-            type="tel"
-            placeholder="+216 XX XXX XXX"
             className="input input-bordered w-full text-lg bg-gray-700 border-gray-600 text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500"
             required
           />
